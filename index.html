@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Evidências - Thiago Palmeira Barbosa</title>
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fa-solid fa-scale-balanced brand-icon"></i>
+        <div>
+          <h1>Defesa Digital</h1>
+          <span>Thiago P. Barbosa</span>
+        </div>
+      </div>
+      
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item active" data-tab="tab-overview">
+            <i class="fa-solid fa-house"></i> Visão Geral
+          </li>
+          <li class="nav-item" data-tab="tab-ctps">
+            <i class="fa-solid fa-address-card"></i> 1. Carteira (CTPS)
+          </li>
+          <li class="nav-item" data-tab="tab-rescisao">
+            <i class="fa-solid fa-file-invoice-dollar"></i> 2. Recibo Rescisório
+          </li>
+          <li class="nav-item" data-tab="tab-jornada">
+            <i class="fa-solid fa-clock"></i> 3. Jornada & Horas
+          </li>
+          <li class="nav-item" data-tab="tab-acumulo">
+            <i class="fa-solid fa-cubes"></i> 4. Acúmulo de Função
+          </li>
+          <li class="nav-item" data-tab="tab-insalubridade">
+            <i class="fa-solid fa-temperature-arrow-down"></i> 5. Insalubridade
+          </li>
+          <li class="nav-item" data-tab="tab-advogada">
+            <i class="fa-solid fa-folder-open"></i> Central do Advogado
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Shared Page Header -->
+      <header class="page-header">
+        <div class="header-info">
+          <h2>Dossiê de Defesa Trabalhista</h2>
+          <p>Reclamante: Marcio Jone Franklin de Paula | Processo nº 0100545-34.2026.5.01.0222</p>
+        </div>
+        <div class="case-badge">
+          Justiça do Trabalho RJ
+        </div>
+      </header>
+
+      <!-- TAB: Visão Geral -->
+      <section id="tab-overview" class="tab-content active">
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Resumo do Caso & Metadados</h3>
+          <div class="panel info">
+            <i class="fa-solid fa-circle-exclamation panel-icon"></i>
+            <div>
+              <h4>Provas Absolutas na Defesa</h4>
+              <p>Este portal reúne as provas digitais obtidas na conversa de WhatsApp com o reclamante que derrubam a maior parte dos pedidos da inicial. O principal ponto de defesa é um recibo de rescisão assinado pelo autor dando plena quitação de R$ 12.852,44 e a prova de que ele solicitou o não registro em carteira para receber encargos e pagar um carro.</p>
+            </div>
+          </div>
+          
+          <table class="meta-table">
+            <tr>
+              <td class="label">Reclamante</td>
+              <td class="value">Marcio Jone Franklin de Paula (Padeiro)</td>
+            </tr>
+            <tr>
+              <td class="label">Vara de Origem</td>
+              <td class="value">Vara do Trabalho de Nova Iguaçu/RJ</td>
+            </tr>
+            <tr>
+              <td class="label">Valor da Causa</td>
+              <td class="value">R$ 214.980,87</td>
+            </tr>
+            <tr>
+              <td class="label">Período de Trabalho</td>
+              <td class="value">17/04/2023 a 24/06/2025 (2 anos, 2 meses e 7 dias)</td>
+            </tr>
+            <tr>
+              <td class="label">Data de Ajuizamento</td>
+              <td class="value">30/04/2026</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-list-check"></i> Principais Teses Contratadas</h3>
+          <div class="argument-list">
+            <div class="argument-item">
+              <h5>Quitação de Rescisão</h5>
+              <p>O reclamante alega que foi dispensado sem receber nada. No entanto, em 06/07/2025 ele assinou o recibo de quitação de R$ 12.852,44, quitando as verbas devidas, aviso prévio, férias e FGTS. O valor restante foi pago via Pix imediato.</p>
+            </div>
+            <div class="argument-item">
+              <h5>Não Assinatura da CTPS a Pedido do Reclamante</h5>
+              <p>A carteira não foi assinada inicialmente porque o próprio reclamante solicitou em mensagem do dia 22/07/2024 receber os encargos previdenciários e trabalhistas em mãos a fim de integralizar o valor da parcela de R$ 700,00 de um carro comprado do tio dele.</p>
+            </div>
+            <div class="argument-item">
+              <h5>Flexibilidade de Jornada e Ajudantes</h5>
+              <p>O autor pleiteia horas extras alegando labor rígido. Provamos que ele tinha liberdade de horários, fazendo "biscates" na parte da manhã e ingressando às 09h em vez de 06h, além de contar com ajudantes permanentes na padaria (Moacir e Rafael).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: 1. Carteira (CTPS) -->
+      <section id="tab-ctps" class="tab-content">
+        <div class="section-grid">
+          
+          <div class="card-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-address-card"></i> CTPS & Pedido de Danos Morais</h3>
+              <div class="panel danger">
+                <i class="fa-solid fa-triangle-exclamation panel-icon"></i>
+                <div>
+                  <h4>O Pedido do Reclamante (R$ 10.000,00)</h4>
+                  <p>Pleiteia danos morais sob a alegação de "clandestinidade do vínculo" e que a empresa agiu de má-fé ocultando o registro de trabalho na carteira profissional.</p>
+                </div>
+              </div>
+              
+              <div class="argument-list">
+                <div class="argument-item">
+                  <h5>Fundamento da Defesa</h5>
+                  <p>Inexistência de dano moral ou má-fé. O próprio reclamante requereu por WhatsApp que o seu contrato de trabalho não fosse registrado. Ele desejava receber a quantia correspondente aos encargos trabalhistas em mãos (Pix/dinheiro) para pagar as parcelas de um Fox 2008 comprado de seu tio. A boa-fé objetiva impede que o reclamante se beneficie de um ato de informalidade que ele próprio pediu e se beneficiou.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="evidence-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-brands fa-whatsapp"></i> Conversa de WhatsApp (22/07/2024)</h3>
+              <div class="whatsapp-chat-container">
+                <div class="wa-date-header">22 DE JULHO DE 2024</div>
+                
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Deixa eu te fazer uma pergunta quanto vc pagaria dr encargos pra assinar minha carteira ??
+E que meu tio que me vender um carro (2008) sem  entrada parcelas de  $700  e  dependendo de quanto for esse encargos se vc pudesse me dar em maos em interaria ( e eu faria uma autonomia e pagaria a parte ) se vc puder fazer esse esquema me ajudaria muito 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️</span>
+                  <span class="wa-time">10:38</span>
+                </div>
+                
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Deixa eu te fazer uma pergunta quanto vc pagaria dr encargos pra assinar minha carteira ??
+E que meu tio que me vender um carro (2008) sem  entrada parcelas de  $700  e  dependendo de quanto for esse encargos se vc pudesse me dar em maos em interaria ( e eu faria uma autonomia e pagaria a parte ) se vc puder fazer esse esquema me ajudaria muito 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️</span>
+                  <span class="wa-time">19:40</span>
+                </div>
+
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Depois me dá um retorno sobre o assunto ..ok.</span>
+                  <span class="wa-time">19:40</span>
+                </div>
+
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">👍🏼</span>
+                  <span class="wa-time">19:40</span>
+                </div>
+
+                <div class="wa-date-header">23 DE JULHO DE 2024</div>
+
+                <div class="wa-bubble sent">
+                  <span class="wa-sender">Thiago Palmeira</span>
+                  <span class="wa-text-content">Recebi a mensagem aqui
+👍🏼👍🏼</span>
+                  <span class="wa-time">07:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB: 2. Recibo Rescisório -->
+      <section id="tab-rescisao" class="tab-content">
+        <div class="section-grid">
+          
+          <div class="card-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-file-invoice-dollar"></i> Quitação de Verbas Rescisórias</h3>
+              <div class="panel danger">
+                <i class="fa-solid fa-triangle-exclamation panel-icon"></i>
+                <div>
+                  <h4>O Pedido do Reclamante (R$ 186.939,89)</h4>
+                  <p>Alega que a empresa o dispensou de forma unilateral, sem pagar nenhuma verba rescisória ou indenização (avisos prévios, férias vencidas/proporcionais, FGTS + 40%, saldo de salário, multa do artigo 477 da CLT).</p>
+                </div>
+              </div>
+              
+              <div class="argument-list">
+                <div class="argument-item">
+                  <h5>A Verdade dos Fatos (Quitação e Transação)</h5>
+                  <p>As partes celebraram um acordo extrajudicial em 06/07/2025 para quitar todas as verbas rescisórias calculadas no valor total de **R$ 12.852,44**. O reclamante deu plena e irrevogável quitação do saldo de salário, férias de 2 períodos + 1/3, 13º proporcional, aviso prévio indenizado de 6 dias e FGTS.</p>
+                </div>
+                <div class="argument-item">
+                  <h5>Como foi feito o pagamento:</h5>
+                  <p>Houve a dedução de R$ 5.000,00 que haviam sido adiantados pela empresa para ele adquirir o carro do tio, além de outros adiantamentos combinados. O saldo remanescente de **R$ 1.000,00** foi pago via Pix na mesma data da assinatura. O comprovante e a foto do documento foram enviados na conversa.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="evidence-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-file-image"></i> Termo de Rescisão Assinado (06/07/2025)</h3>
+              <div class="evidence-image-container">
+                <img src="assets/rescisao_assinada.jpg" alt="Termo de Rescisão Assinado por Marcio Jone" class="zoomable-image">
+                <div class="evidence-image-caption">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Clique na imagem acima para ampliar a assinatura dele
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-ticket"></i> Comprovante do Pagamento Final (Pix)</h3>
+              <div class="receipt-mock">
+                <div class="receipt-header">
+                  <div class="receipt-logo">stone</div>
+                  <div class="receipt-title">Comprovante de Transferência</div>
+                  <div class="receipt-subtitle">Realizada em 06 de Julho de 2025 às 22:11:13</div>
+                </div>
+                <div class="receipt-value">
+                  <div class="receipt-value-label">Valor do Pix</div>
+                  <div class="receipt-value-amount">R$ 1.000,00</div>
+                </div>
+                <div class="receipt-info-group">
+                  <div class="receipt-info-row">
+                    <span class="receipt-info-label">Destinatário:</span>
+                    <span class="receipt-info-value">Marcio Jone Franklin de paula</span>
+                  </div>
+                  <div class="receipt-info-row">
+                    <span class="receipt-info-label">Banco Destino:</span>
+                    <span class="receipt-info-value">PAGSEGURO INTERNET S.A.</span>
+                  </div>
+                  <div class="receipt-info-row">
+                    <span class="receipt-info-label">Origem:</span>
+                    <span class="receipt-info-value">BOGADOS PADARIA E CONFEITARIA<br>CNPJ 31.269.546/0001-76</span>
+                  </div>
+                  <div class="receipt-info-row">
+                    <span class="receipt-info-label">ID da Transação:</span>
+                    <span class="receipt-info-value" style="font-size: 0.65rem;">E165015552025070701118dc909bcc34</span>
+                  </div>
+                </div>
+                <div class="receipt-footer">
+                  Stone Instituição de Pagamento S.A.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB: 3. Jornada & Horas -->
+      <section id="tab-jornada" class="tab-content">
+        <div class="section-grid">
+          
+          <div class="card-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-clock"></i> Jornada de Trabalho & Supressão de Almoço</h3>
+              <div class="panel danger">
+                <i class="fa-solid fa-triangle-exclamation panel-icon"></i>
+                <div>
+                  <h4>O Pedido do Reclamante (R$ 40.329,42)</h4>
+                  <p>Alega que trabalhava ininterruptamente das 06:00 às 15:00 de segunda a sábado, sem gozar do intervalo intrajornada para descanso ou almoço, pleiteando horas extras em dobro e reflexos.</p>
+                </div>
+              </div>
+              
+              <div class="argument-list">
+                <div class="argument-item">
+                  <h5>A Verdade dos Fatos (Flexibilidade de Horários)</h5>
+                  <p>A jornada do reclamante não era fixa e muito menos de sobrecarga. Em **06/02/2024**, ele mesmo solicitou flexibilização de horário para realizar serviços autônomos externos (pinturas/biscates) no início da manhã, ingressando às 09:00 e saindo às 14:00, ou seja, executando jornadas de apenas **5 horas diárias**.</p>
+                </div>
+                <div class="argument-item">
+                  <h5>Biscates e Trabalho em Equipe</h5>
+                  <p>O reclamante utilizava suas folgas para serviços externos particulares (como fazer teto de drywall em domingos de folga) e sua produção diária era dividida com outros profissionais que trabalhavam no setor de panificação (ajudantes como Moacir e padeiros como Rafael), refutando a versão exordial de isolamento e sobrecarga contínua.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="evidence-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-brands fa-whatsapp"></i> Conversa de WhatsApp (06/02/2024)</h3>
+              <div class="whatsapp-chat-container">
+                <div class="wa-date-header">06 DE FEVEREIRO DE 2024</div>
+                
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Bom dia Thiago.. marquei sexta com o cara as 17:00 ok 
+E outra coisa estou tentando arrumar um " ajudante" que tenha noção de padeiro ou padeiro mesmo porq com o Moacir não tá dando...</span>
+                  <span class="wa-time">10:37</span>
+                </div>
+                
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">E se vc  conseguir alguém me avisa ok 
+Vou fazer um biscatinho aqui perto de casa de 6 as oito posso chegar lá umas 9:00 da manhã eu fico até 14:00  Pode ser ??🤷‍♂️🤷‍♂️e todo domingo</span>
+                  <span class="wa-time">15:43</span>
+                </div>
+
+                <div class="wa-bubble sent">
+                  <span class="wa-sender">Thiago Palmeira</span>
+                  <span class="wa-text-content">[Mensagem de áudio anexada]</span>
+                  <span class="wa-time">16:21</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB: 4. Acúmulo de Função -->
+      <section id="tab-acumulo" class="tab-content">
+        <div class="section-grid">
+          
+          <div class="card-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-cubes"></i> Acúmulo de Função (Baker, Salgadeiro, Confeiteiro)</h3>
+              <div class="panel danger">
+                <i class="fa-solid fa-triangle-exclamation panel-icon"></i>
+                <div>
+                  <h4>O Pedido do Reclamante (R$ 34.026,15)</h4>
+                  <p>Alega acúmulo ilegal de função, sustentando que realizava toda a fabricação de doces (confeiteiro) e salgados (salgadeiro) de forma sobrecarregada.</p>
+                </div>
+              </div>
+              
+              <div class="argument-list">
+                <div class="argument-item">
+                  <h5>A Verdade dos Fatos (Equipe Própria)</h5>
+                  <p>A empresa mantinha confeiteiros e ajudantes de confeitaria na folha de pagamentos, o que comprova que o reclamante não exercia tais funções sozinho. Na conversa do WhatsApp, constam contatos diretos de contratações de profissionais para o setor (como **Carlos Confeiteiro** e **Kayti Confeiteira**).</p>
+                </div>
+                <div class="argument-item">
+                  <h5>Volume de Produção Irrisório</h5>
+                  <p>A confecção de salgados assados era residual e executada em conjunto com os ajudantes. O segundo Reclamado limitou formalmente a produção a no máximo **20 salgados por dia** (mensagem de 28/10/2024), comprovando a ausência de sobrecarga de trabalho que justificasse desvio de função.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="evidence-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-brands fa-whatsapp"></i> Contatos e Limites de Produção</h3>
+              <div class="whatsapp-chat-container">
+                <div class="wa-date-header">08 DE JULHO DE 2024</div>
+                
+                <div class="wa-bubble sent">
+                  <span class="wa-sender">Thiago Palmeira</span>
+                  <div class="wa-media-attachment">
+                    <i class="fa-solid fa-address-book wa-media-icon"></i>
+                    <div class="wa-media-details">
+                      <span>Carlos Confeiteiro.vcf</span>
+                      <span class="wa-media-size">142 bytes</span>
+                    </div>
+                  </div>
+                  <span class="wa-time">22:50</span>
+                </div>
+                
+                <div class="wa-date-header">25 DE JULHO DE 2024</div>
+
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">E ..falei pra ela" que pena que é só confeiteira ..</span>
+                  <span class="wa-time">18:41</span>
+                </div>
+
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <div class="wa-media-attachment">
+                    <i class="fa-solid fa-address-book wa-media-icon"></i>
+                    <div class="wa-media-details">
+                      <span>Kayticonfeiteira.vcf</span>
+                      <span class="wa-media-size">149 bytes</span>
+                    </div>
+                  </div>
+                  <span class="wa-time">18:50</span>
+                </div>
+
+                <div class="wa-date-header">28 DE OUTUBRO DE 2024</div>
+
+                <div class="wa-bubble sent">
+                  <span class="wa-sender">Thiago Palmeira</span>
+                  <span class="wa-text-content">Não fazer mais do que 20 salgados por dia.</span>
+                  <span class="wa-time">21:48</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB: 5. Insalubridade -->
+      <section id="tab-insalubridade" class="tab-content">
+        <div class="section-grid">
+          
+          <div class="card-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-solid fa-temperature-arrow-down"></i> Adicional de Insalubridade (Calor e Frio)</h3>
+              <div class="panel danger">
+                <i class="fa-solid fa-triangle-exclamation panel-icon"></i>
+                <div>
+                  <h4>O Pedido do Reclamante (R$ 20.525,44)</h4>
+                  <p>Pleiteia adicional de insalubridade em grau máximo sob a alegação de que trabalhava exposto ao calor excessivo dos fornos de pão e ao frio extremo por adentrar em "câmaras frias" industriais sem EPI.</p>
+                </div>
+              </div>
+              
+              <div class="argument-list">
+                <div class="argument-item">
+                  <h5>A Verdade dos Fatos (Ausência de Risco por Frio)</h5>
+                  <p>O estabelecimento **não possui câmara frigorífica** de congelados. Toda menção à "câmara" no histórico de mensagens (ex: em 06/04/2025: *"Acho que tem atrás da câmara"*) refere-se exclusivamente à **câmara de fermentação do pão**, que é um armário de metal climatizado mantido em temperatura ambiente ou com resfriamento muito leve (câmara de crescimento controlado), cuja temperatura não apresenta riscos ou insalubridade por frio (não correspondendo aos limites da NR-15).</p>
+                </div>
+                <div class="argument-item">
+                  <h5>Exposição ao Calor e EPI</h5>
+                  <p>O reclamante operava fornos de panificação comuns. A eventual insalubridade por calor deve ser medida por perícia técnica de engenharia no local de trabalho (IBUTG). Não há registros de risco extraordinário não mitigado.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="evidence-column">
+            <div class="card">
+              <h3 class="card-title"><i class="fa-brands fa-whatsapp"></i> Mensagens sobre Equipamentos</h3>
+              <div class="whatsapp-chat-container">
+                <div class="wa-date-header">06 DE ABRIL DE 2025</div>
+                
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Não tem farinha pra amanhã...tó sabendo ???</span>
+                  <span class="wa-time">16:24</span>
+                </div>
+                
+                <div class="wa-bubble sent">
+                  <span class="wa-sender">Thiago Palmeira</span>
+                  <span class="wa-text-content">Acho q tem atrás da câmara
+👍🏼👍🏼👍🏼</span>
+                  <span class="wa-time">16:29</span>
+                </div>
+
+                <div class="wa-bubble received">
+                  <span class="wa-sender">Marcio Novo Celular</span>
+                  <span class="wa-text-content">Acho que não..peguei os dois que estavam lá ok</span>
+                  <span class="wa-time">16:52</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB: Central do Advogado -->
+      <section id="tab-advogada" class="tab-content">
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-folder-open"></i> Central de Downloads & Ações Recomendadas</h3>
+          
+          <div class="panel success">
+            <i class="fa-solid fa-circle-check panel-icon"></i>
+            <div>
+              <h4>Material Pronto para Entrega</h4>
+              <p>Baixe o pacote compactado completo contendo a minuta em Markdown, as imagens originais de provas e as orientações em alta resolução para anexar diretamente à sua defesa no processo trabalhista.</p>
+            </div>
+          </div>
+          
+          <div class="download-grid">
+            <div class="download-card">
+              <i class="fa-solid fa-file-zipper download-icon"></i>
+              <h4>Pacote de Defesa Completo</h4>
+              <p>Contém minuta, dossiê de provas e imagens renomeadas de recibos.</p>
+              <a href="assets/defesa_trabalhista_completa.zip" class="btn-download"><i class="fa-solid fa-download"></i> Baixar ZIP</a>
+            </div>
+            
+            <div class="download-card">
+              <i class="fa-solid fa-file-pdf download-icon"></i>
+              <h4>Cálculos da Rescisão</h4>
+              <p>Demonstrativo impresso que foi assinado pelo reclamante.</p>
+              <a href="assets/calculo_rescisao.pdf" target="_blank" class="btn-download secondary"><i class="fa-solid fa-file-pdf"></i> Abrir PDF</a>
+            </div>
+
+            <div class="download-card">
+              <i class="fa-solid fa-file-pdf download-icon"></i>
+              <h4>Comprovante do Pix</h4>
+              <p>Transferência bancária de R$ 1.000,00 enviada em 06/07/2025.</p>
+              <a href="assets/comprovante_pix.pdf" target="_blank" class="btn-download secondary"><i class="fa-solid fa-file-pdf"></i> Abrir PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-gavel"></i> Orientações Processuais Importantes</h3>
+          <div class="argument-list">
+            <div class="argument-item">
+              <h5>1. Lavratura de Ata Notarial (CPC, art. 384)</h5>
+              <p>Recomenda-se que a advogada compareça a um Cartório de Notas e lavre uma **Ata Notarial** registrando as mensagens e mídias das datas de **22/07/2024** (iniciativa do não registro pelo autor) e **06/07/2025** (acordo de quitação e Pix). A ata possui fé pública e afasta qualquer questionamento sobre manipulação de conversas.</p>
+            </div>
+            <div class="argument-item">
+              <h5>2. Conciliação com Extrato Bancário</h5>
+              <p>Deve-se juntar ao processo o extrato bancário oficial em PDF da conta de origem (Bogados Padaria) referente ao dia **06/07/2025**, para demonstrar que o débito de R$ 1.000,00 concilia-se perfeitamente com o ID da transação constante no comprovante do Pix enviado na conversa.</p>
+            </div>
+            <div class="argument-item">
+              <h5>3. Pedido de Pena por Litigância de Má-Fé</h5>
+              <p>Como o reclamante alega em juízo que não recebeu qualquer verba rescisória, omitindo o fato de ter assinado a quitação e recebido as compensações financeiras e o Pix, a defesa deve requerer a aplicação da pena por **Litigância de Má-Fé (CLT, art. 793-B)**, por alteração intencional da verdade dos fatos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Lightbox Modal for Image Zoom -->
+  <div id="zoom-modal" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="zoom-img">
+  </div>
+
+  <!-- Custom JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
