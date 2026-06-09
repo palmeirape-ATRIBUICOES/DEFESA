@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'note-salarios',
     'note-jornada',
     'note-acumulo',
-    'note-insalubridade'
+    'note-insalubridade',
+    'note-ferias'
   ];
 
   const CLOUD_DB_URL = 'https://kvdb.io/LCxLp7QF1N4wSwHHDaPXYt/notes';
