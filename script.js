@@ -58,4 +58,116 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.style.display = 'none';
     }
   });
+
+  // --- LAWYER'S NOTES LOGIC ---
+  const btnNotesFloat = document.getElementById('btn-notes-float');
+  const btnNotesSidebar = document.getElementById('btn-notes-sidebar');
+  const notesSidebar = document.getElementById('notes-sidebar');
+  const closeNotes = document.getElementById('close-notes');
+  const clearNotesBtn = document.getElementById('clear-notes-btn');
+  const exportNotesBtn = document.getElementById('export-notes-btn');
+  
+  const noteFields = [
+    'note-geral',
+    'note-ctps',
+    'note-rescisao',
+    'note-salarios',
+    'note-jornada',
+    'note-acumulo',
+    'note-insalubridade'
+  ];
+
+  const openSidebar = () => {
+    if (notesSidebar) notesSidebar.classList.add('open');
+  };
+
+  const closeSidebar = () => {
+    if (notesSidebar) notesSidebar.classList.remove('open');
+  };
+
+  if (btnNotesFloat) btnNotesFloat.addEventListener('click', openSidebar);
+  if (btnNotesSidebar) btnNotesSidebar.addEventListener('click', openSidebar);
+  if (closeNotes) closeNotes.addEventListener('click', closeSidebar);
+
+  // Close notes sidebar with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && notesSidebar && notesSidebar.classList.contains('open')) {
+      closeSidebar();
+    }
+  });
+
+  // Load notes from localStorage
+  noteFields.forEach(id => {
+    const textarea = document.getElementById(id);
+    if (textarea) {
+      const savedNote = localStorage.getItem(id);
+      if (savedNote) {
+        textarea.value = savedNote;
+      }
+      textarea.addEventListener('input', () => {
+        localStorage.setItem(id, textarea.value);
+      });
+    }
+  });
+
+  // Clear notes
+  if (clearNotesBtn) {
+    clearNotesBtn.addEventListener('click', () => {
+      if (confirm('Tem certeza que deseja limpar todas as anotaÃ§Ãµes? Esta aÃ§Ã£o nÃ£o pode ser desfeita.')) {
+        noteFields.forEach(id => {
+          const textarea = document.getElementById(id);
+          if (textarea) {
+            textarea.value = '';
+          }
+          localStorage.removeItem(id);
+        });
+        alert('Todas as anotaÃ§Ãµes foram limpas.');
+      }
+    });
+  }
+
+  // Export notes
+  if (exportNotesBtn) {
+    exportNotesBtn.addEventListener('click', () => {
+      let exportText = '==================================================\n';
+      exportText += 'ANOTAÃ‡Ã•ES ESTRATÃ‰GICAS DA ADVOGADA - DEFESA DE THIAGO PALMEIRA BARBOSA\n';
+      exportText += `Data de ExportaÃ§Ã£o: ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR')}\n`;
+      exportText += '==================================================\n\n';
+
+      const labels = {
+        'note-geral': 'Resumo do Caso & Geral',
+        'note-ctps': 'Tese 1: Carteira (CTPS) & Danos Morais',
+        'note-rescisao': 'Tese 2: Acordo RescisÃ³rio & QuitaÃ§Ã£o',
+        'note-salarios': 'Tese 3: SalÃ¡rios & Pix Semanal',
+        'note-jornada': 'Tese 4: Jornada de Trabalho & Horas Extras',
+        'note-acumulo': 'Tese 5: AcÃºmulo de FunÃ§Ã£o',
+        'note-insalubridade': 'Tese 6: Insalubridade'
+      };
+
+      let hasNotes = false;
+      noteFields.forEach(id => {
+        const val = document.getElementById(id)?.value || '';
+        if (val.trim()) {
+          hasNotes = true;
+          exportText += `--- ${labels[id].toUpperCase()} ---\n`;
+          exportText += `${val}\n\n`;
+        }
+      });
+
+      if (!hasNotes) {
+        alert('NÃ£o hÃ¡ nenhuma anotaÃ§Ã£o preenchida para ser exportada.');
+        return;
+      }
+
+      const blob = new Blob([exportText], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Anotacoes_Defesa_Trabalhista.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
 });

@@ -720,3 +720,227 @@ body {
     padding: 1.5rem;
   }
 }
+
+/* ==========================================================================
+   LAWYER'S NOTES SYSTEM
+   ========================================================================== */
+
+/* Floating notes button */
+.btn-notes-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--color-primary, #6366f1);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 900;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-notes-float:hover {
+  background: var(--color-primary-hover, #4f46e5);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+}
+
+/* Notes Sidebar */
+.notes-sidebar {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+.notes-sidebar.open {
+  right: 0;
+}
+
+.notes-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.notes-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #818cf8;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.close-notes-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.close-notes-btn:hover {
+  color: #f87171;
+}
+
+.notes-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.notes-help {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+  background: rgba(30, 41, 59, 0.25);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.note-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.note-section label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.note-section textarea {
+  width: 100%;
+  height: 90px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.note-section textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.notes-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-action:not(.danger) {
+  background: #6366f1;
+  color: white;
+}
+
+.btn-action:not(.danger):hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.btn-action.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-action.danger:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Timeline enhancements */
+.timeline-notes {
+  margin-top: 1rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.timeline-notes h6 {
+  color: #a5b4fc;
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.timeline-notes p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.receipt-double-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .receipt-double-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
