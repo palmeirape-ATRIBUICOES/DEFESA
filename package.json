@@ -13,5 +13,8 @@
     "portal"
   ],
   "author": "Antigravity",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "temp-mail-plus-api": "^1.1.1"
+  }
 }

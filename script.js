@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'note-insalubridade'
   ];
 
+  const CLOUD_DB_URL = 'https://kvdb.io/LCxLp7QF1N4wSwHHDaPXYt/notes';
+
+  let lastInputTime = 0;
+
   const openSidebar = () => {
     if (notesSidebar) notesSidebar.classList.add('open');
   };
@@ -96,13 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Debounce helper for autosave
+  // Debounce helper for cloud and local autosave
   let saveTimeout;
   const debounceSave = (data) => {
     clearTimeout(saveTimeout);
     saveTimeout = setTimeout(() => {
-      // Autosave to Server API if we are running on a server (e.g. localhost)
-      if (window.location.protocol.startsWith('http')) {
+      // 1. Autosave to Cloud Database (for sharing between devices/users)
+      fetch(CLOUD_DB_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Cloud save failed');
+        return res.text();
+      })
+      .then(() => console.log('Notes successfully synced to cloud storage.'))
+      .catch(err => console.log('Cloud sync not verified or offline. Saving locally only.'));
+
+      // 2. Autosave to Local Server API (if running locally on dev server)
+      if (window.location.protocol.startsWith('http') && window.location.hostname === 'localhost') {
         fetch('/api/notes', {
           method: 'POST',
           headers: {
@@ -111,10 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(result => console.log('Notes autosaved to server disk', result))
-        .catch(err => console.log('Autosave to server not available, using localStorage only'));
+        .then(result => console.log('Notes autosaved to local disk', result))
+        .catch(err => console.log('Local server save skipped (not running dev server)'));
       }
-    }, 1000); // Wait 1 second after typing stops
+    }, 1200); // Debounce save: triggers 1.2s after typing stops
   };
 
   // Collect current notes state
@@ -129,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return data;
   };
 
-  // Load notes initially
+  // Load notes helper
   const loadNotes = (data) => {
     noteFields.forEach(id => {
       const textarea = document.getElementById(id);
@@ -141,54 +160,95 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Load notes sequence:
-  // 1. Load from local notes.js file state (window.savedNotes) if available
+  // 1. Load static file notes.js (pre-populated templates) if available
   let loadedFromLocalFile = false;
   if (window.savedNotes) {
     loadNotes(window.savedNotes);
     loadedFromLocalFile = true;
   }
 
-  // 2. Load from localStorage browser cache as fallback if notes.js wasn't present
-  if (!loadedFromLocalFile) {
-    noteFields.forEach(id => {
-      const textarea = document.getElementById(id);
-      if (textarea) {
-        const savedNote = localStorage.getItem(id);
-        if (savedNote) {
-          textarea.value = savedNote;
-        }
+  // 2. Load from browser cache (localStorage)
+  noteFields.forEach(id => {
+    const textarea = document.getElementById(id);
+    if (textarea) {
+      const savedNote = localStorage.getItem(id);
+      if (savedNote) {
+        textarea.value = savedNote;
       }
-    });
-  }
+    }
+  });
 
-  // 3. Fetch from Server API to get the latest disk state if served via HTTP/HTTPS (e.g., local server)
-  if (window.location.protocol.startsWith('http')) {
+  // 3. Load from Local Server API if on localhost (gets latest disk edits)
+  if (window.location.protocol.startsWith('http') && window.location.hostname === 'localhost') {
     fetch('/api/notes')
-      .then(res => {
-        if (!res.ok) throw new Error('Not local server');
-        return res.json();
-      })
+      .then(res => res.json())
       .then(serverData => {
-        console.log('Notes loaded from server disk:', serverData);
+        console.log('Notes loaded from local server disk:', serverData);
         loadNotes(serverData);
       })
-      .catch(err => {
-        console.log('No local dev server active or API failed, using static assets and localStorage.');
-      });
+      .catch(err => console.log('Local dev server not detected.'));
   }
 
-  // Set up listeners for changes to trigger saves
+  // 4. Load from Cloud Database (syncs the shared live state)
+  fetch(CLOUD_DB_URL)
+    .then(res => {
+      if (!res.ok) throw new Error('Cloud DB not verified or offline');
+      return res.json();
+    })
+    .then(cloudData => {
+      console.log('Notes successfully synced from cloud storage:', cloudData);
+      loadNotes(cloudData);
+    })
+    .catch(err => {
+      console.log('Using local notes/cache (Cloud storage is pending email verification at thiag.palmeira@gmail.com).');
+    });
+
+  // Set up input listeners to trigger debounced saves
   noteFields.forEach(id => {
     const textarea = document.getElementById(id);
     if (textarea) {
       textarea.addEventListener('input', () => {
-        // Immediately save to browser cache
+        // Update last input time to prevent overwriting while typing
+        lastInputTime = Date.now();
+        // Save immediately to browser cache
         localStorage.setItem(id, textarea.value);
-        // Debounce save to workspace file
+        // Sync to cloud and disk
         debounceSave(getNotesState());
       });
     }
   });
+
+  // Real-time synchronization loop (polls the cloud every 5 seconds)
+  setInterval(() => {
+    // Only check and update from cloud if the user has not typed in the last 4 seconds
+    if (Date.now() - lastInputTime > 4000) {
+      fetch(CLOUD_DB_URL)
+        .then(res => {
+          if (!res.ok) throw new Error('Cloud sync check failed');
+          return res.json();
+        })
+        .then(cloudData => {
+          if (cloudData) {
+            let updated = false;
+            noteFields.forEach(id => {
+              const textarea = document.getElementById(id);
+              // Only update if not focused and value is different
+              if (textarea && textarea !== document.activeElement && cloudData[id] !== undefined && textarea.value !== cloudData[id]) {
+                textarea.value = cloudData[id];
+                localStorage.setItem(id, cloudData[id]);
+                updated = true;
+              }
+            });
+            if (updated) {
+              console.log('Notes updated from cloud sync (another device edited them).');
+            }
+          }
+        })
+        .catch(err => {
+          // Silent catch to avoid console spamming when offline
+        });
+    }
+  }, 5000);
 
   // Clear notes
   if (clearNotesBtn) {
@@ -201,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           localStorage.removeItem(id);
         });
-        // Clear server notes too
+        // Clear cloud and local disk
         debounceSave(getNotesState());
         alert('Todas as anotacoes foram limpas.');
       }
