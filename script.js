@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnNotesFloat = document.getElementById('btn-notes-float');
   const btnNotesSidebar = document.getElementById('btn-notes-sidebar');
   const notesSidebar = document.getElementById('notes-sidebar');
-  const closeNotes = document.getElementById('close-notes');
+  const closeNotesBtn = document.getElementById('close-notes');
   const clearNotesBtn = document.getElementById('clear-notes-btn');
   const exportNotesBtn = document.getElementById('export-notes-btn');
   
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnNotesFloat) btnNotesFloat.addEventListener('click', openSidebar);
   if (btnNotesSidebar) btnNotesSidebar.addEventListener('click', openSidebar);
-  if (closeNotes) closeNotes.addEventListener('click', closeSidebar);
+  if (closeNotesBtn) closeNotesBtn.addEventListener('click', closeSidebar);
 
   // Close notes sidebar with Escape key
   document.addEventListener('keydown', (e) => {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Clear notes
   if (clearNotesBtn) {
     clearNotesBtn.addEventListener('click', () => {
-      if (confirm('Tem certeza que deseja limpar todas as anotaÃ§Ãµes? Esta aÃ§Ã£o nÃ£o pode ser desfeita.')) {
+      if (confirm('Tem certeza que deseja limpar todas as anotacoes? Esta acao nao pode ser desfeita.')) {
         noteFields.forEach(id => {
           const textarea = document.getElementById(id);
           if (textarea) {
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           localStorage.removeItem(id);
         });
-        alert('Todas as anotaÃ§Ãµes foram limpas.');
+        alert('Todas as anotacoes foram limpas.');
       }
     });
   }
@@ -130,17 +130,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (exportNotesBtn) {
     exportNotesBtn.addEventListener('click', () => {
       let exportText = '==================================================\n';
-      exportText += 'ANOTAÃ‡Ã•ES ESTRATÃ‰GICAS DA ADVOGADA - DEFESA DE THIAGO PALMEIRA BARBOSA\n';
-      exportText += `Data de ExportaÃ§Ã£o: ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR')}\n`;
+      exportText += 'ANOTACOES ESTRATEGICAS DA ADVOGADA - DEFESA DE THIAGO PALMEIRA BARBOSA\n';
+      exportText += `Data de Exportacao: ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR')}\n`;
       exportText += '==================================================\n\n';
 
       const labels = {
         'note-geral': 'Resumo do Caso & Geral',
         'note-ctps': 'Tese 1: Carteira (CTPS) & Danos Morais',
-        'note-rescisao': 'Tese 2: Acordo RescisÃ³rio & QuitaÃ§Ã£o',
-        'note-salarios': 'Tese 3: SalÃ¡rios & Pix Semanal',
+        'note-rescisao': 'Tese 2: Acordo Rescisorio & Quitacao',
+        'note-salarios': 'Tese 3: Salarios & Pix Semanal',
         'note-jornada': 'Tese 4: Jornada de Trabalho & Horas Extras',
-        'note-acumulo': 'Tese 5: AcÃºmulo de FunÃ§Ã£o',
+        'note-acumulo': 'Tese 5: Acumulo de Funcao',
         'note-insalubridade': 'Tese 6: Insalubridade'
       };
 
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (!hasNotes) {
-        alert('NÃ£o hÃ¡ nenhuma anotaÃ§Ã£o preenchida para ser exportada.');
+        alert('Nao ha nenhuma anotacao preenchida para ser exportada.');
         return;
       }
 
