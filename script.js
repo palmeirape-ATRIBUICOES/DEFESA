@@ -96,16 +96,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Load notes from localStorage
+  // Debounce helper for autosave
+  let saveTimeout;
+  const debounceSave = (data) => {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      // Autosave to Server API if we are running on a server (e.g. localhost)
+      if (window.location.protocol.startsWith('http')) {
+        fetch('/api/notes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result => console.log('Notes autosaved to server disk', result))
+        .catch(err => console.log('Autosave to server not available, using localStorage only'));
+      }
+    }, 1000); // Wait 1 second after typing stops
+  };
+
+  // Collect current notes state
+  const getNotesState = () => {
+    const data = {};
+    noteFields.forEach(id => {
+      const textarea = document.getElementById(id);
+      if (textarea) {
+        data[id] = textarea.value;
+      }
+    });
+    return data;
+  };
+
+  // Load notes initially
+  const loadNotes = (data) => {
+    noteFields.forEach(id => {
+      const textarea = document.getElementById(id);
+      if (textarea && data && data[id] !== undefined) {
+        textarea.value = data[id];
+        localStorage.setItem(id, data[id]);
+      }
+    });
+  };
+
+  // Load notes sequence:
+  // 1. Load from local notes.js file state (window.savedNotes) if available
+  let loadedFromLocalFile = false;
+  if (window.savedNotes) {
+    loadNotes(window.savedNotes);
+    loadedFromLocalFile = true;
+  }
+
+  // 2. Load from localStorage browser cache as fallback if notes.js wasn't present
+  if (!loadedFromLocalFile) {
+    noteFields.forEach(id => {
+      const textarea = document.getElementById(id);
+      if (textarea) {
+        const savedNote = localStorage.getItem(id);
+        if (savedNote) {
+          textarea.value = savedNote;
+        }
+      }
+    });
+  }
+
+  // 3. Fetch from Server API to get the latest disk state if served via HTTP/HTTPS (e.g., local server)
+  if (window.location.protocol.startsWith('http')) {
+    fetch('/api/notes')
+      .then(res => {
+        if (!res.ok) throw new Error('Not local server');
+        return res.json();
+      })
+      .then(serverData => {
+        console.log('Notes loaded from server disk:', serverData);
+        loadNotes(serverData);
+      })
+      .catch(err => {
+        console.log('No local dev server active or API failed, using static assets and localStorage.');
+      });
+  }
+
+  // Set up listeners for changes to trigger saves
   noteFields.forEach(id => {
     const textarea = document.getElementById(id);
     if (textarea) {
-      const savedNote = localStorage.getItem(id);
-      if (savedNote) {
-        textarea.value = savedNote;
-      }
       textarea.addEventListener('input', () => {
+        // Immediately save to browser cache
         localStorage.setItem(id, textarea.value);
+        // Debounce save to workspace file
+        debounceSave(getNotesState());
       });
     }
   });
@@ -121,6 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           localStorage.removeItem(id);
         });
+        // Clear server notes too
+        debounceSave(getNotesState());
         alert('Todas as anotacoes foram limpas.');
       }
     });

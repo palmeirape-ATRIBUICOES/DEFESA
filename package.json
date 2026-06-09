@@ -1,0 +1,17 @@
+{
+  "name": "defesa-trabalhista-portal",
+  "version": "1.0.0",
+  "description": "Painel de Evidências Trabalhistas - Thiago Palmeira Barbosa",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "defesa",
+    "trabalhista",
+    "portal"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}
